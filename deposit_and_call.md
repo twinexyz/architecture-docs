@@ -2,13 +2,7 @@
 
 ## 1. Summary
 
-Twine is a cross-VM rollup that allows users to move assets from any source chain (Ethereum, Solana, etc.) and—within the same atomic step—execute arbitrary smart-contract calls on the destination chain.  
-The feature is branded **“Deposit-and-Call”** and relies on three pillars:  
-• A deterministic event schema (`QueueTransaction`) emitted on L1.  
-• A ZSTD-compressed `message` field that carries ABI-encoded calldata.  
-• A sequencer that mints the user’s tokens, then replays the decoded calls inside Twine’s EVM.
-
-![](./deposit_and_call.png)
+Twine is a cross-VM rollup that allows users to move assets from any source chain (Ethereum, Solana, etc.) and within the same atomic step, execute arbitrary smart-contract calls on the destination chain.  
 
 ## 2. High Level Architecture
 
@@ -118,3 +112,6 @@ struct ContractCall {
 | Decompression fails | Sequencer marks `l1MessageExecuted=false` | Refund via L1 after timeout with zk proofs |
 | External call reverts | Entire tx reverted, mint rolled back | Same as above |
 
+
+### 8. Flow Diagram
+![](./deposit_and_call.png)
